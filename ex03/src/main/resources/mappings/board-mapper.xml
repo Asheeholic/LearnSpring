@@ -25,7 +25,8 @@
 	</select>
 	
 	<insert id="insert" >
-		<selectKey>
+		<selectKey keyProperty="bno" resultType="long" order="BEFORE">
+			SELECT SEQ_BOARD.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO TBL_BOARD(
 			BNO
