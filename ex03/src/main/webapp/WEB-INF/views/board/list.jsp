@@ -13,6 +13,7 @@
 				<tr>
 					<th>글번호</th>
 					<th>글 제목</th>
+					<th>글 내용</th>
 					<th>글 작성자</th>
 					<th>작성일</th>
 					<th>수정일</th>
@@ -23,6 +24,7 @@
 					<tr>
 						<td>${board.bno }</td>
 						<td><a href="get?bno=${board.bno}">${board.title }</a></td>
+						<td>${board.content }</td>
 						<td>${board.writer }</td>
 						<td><fmt:formatDate value="${board.regdate}" type="both"/></td>
 						<td><fmt:formatDate value="${board.updatedate}" type="both"/></td>
@@ -30,6 +32,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<button type="button" class="btn btn-success" onclick="location.href='register'">Register</button>
 	</div>
 </div>
 <%@ include file="/WEB-INF/views/includes/footer.jsp" %>

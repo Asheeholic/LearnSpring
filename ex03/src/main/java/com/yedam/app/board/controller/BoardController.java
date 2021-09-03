@@ -44,7 +44,7 @@ public class BoardController {
 		if(result == 1) {
 			rttr.addFlashAttribute("result", "success");			
 		}
-		return "redirect:/board/get?bno=" + vo.getBno();
+		return "redirect:/board/list";
 	}
 	
 	// 등록페이지

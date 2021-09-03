@@ -6,9 +6,6 @@
     </div>
     <!-- /#wrapper -->
 	
-	<!-- jQuery -->
-    <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 

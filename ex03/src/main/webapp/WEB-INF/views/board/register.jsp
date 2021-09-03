@@ -9,7 +9,7 @@
 	<div class="col-lg-12">
 		<div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">선택한 게시글 수정하기</h1>
+                <h1 class="page-header">게시글 등록하기</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -17,27 +17,26 @@
 	        <div class="col-lg-12">
 	            <div class="panel panel-default">
 	                <div class="panel-heading">
-	                    수정 폼
+	                    입력 폼
 	                </div>
 	                <div class="panel-body">
 	                    <div class="row">
 	                        <div class="col-lg-6">
-	                            <form role="form" action="modify" method="post">
+	                            <form role="form" action="register" method="post">
 	                                <div class="form-group">
 	                                    <label>제목</label>
-	                                    <input class="form-control" name="title" value="${board.title}" placeholder="제목을 적어주세요">
+	                                    <input class="form-control" name="title" placeholder="제목을 적어주세요">
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>작성자</label>
-	                                    <input class="form-control" name="writer" value="${board.writer}" placeholder="이름을 적어주세요">
+	                                    <input class="form-control" name="writer" placeholder="이름을 적어주세요">
 	                                </div>
 	                                <div class="form-group">
 	                                    <label>내용</label>
-	                                    <textarea class="form-control" name="content" rows="3">${board.content}</textarea>
+	                                    <textarea class="form-control" name="content" rows="3"></textarea>
 	                                </div>
-	                                <input type="hidden" name="bno" value="${board.bno}">
-	                                <button type="submit" class="btn btn-primary">Update</button>
-	                                <button type="button" id="delbtn" class="btn btn-danger">Remove</button>
+	                                <button type="submit" class="btn btn-primary">Submit</button>
+	                                <button type="button" id="delbtn" class="btn btn-danger">remove</button>
 	                                <button type="reset" class="btn btn-warning">Reset</button>
 	                            </form>
 	                        </div>
@@ -53,19 +52,4 @@
 	    </div>
 	</div>
 </div>
-<form id="frm" action="delete" method="post">
-	<input id="delbno" type="hidden" name="bno">
-</form>
-<script>
-	$(document).ready(function() {
-		$('#delbtn').on('click', function() {
-			if(confirm("정말로 삭제 하시겠습니까?")){
-				$('#delbno').val('${board.bno}');
-				$('#frm').submit();
-			}
-		});
-		
-	});
-	
-</script>
 <%@ include file="/WEB-INF/views/includes/footer.jsp" %>
