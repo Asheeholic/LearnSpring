@@ -1,11 +1,10 @@
-package com.yedam.app.board.mapper;
+package com.yedam.app.board.service;
 
 import java.util.List;
 
 import com.yedam.app.board.domain.BoardVO;
 
-public interface BoardMapper {
-	
+public interface BoardService {
 	//CRUD
 	//등록
 	public int insert(BoardVO vo);
@@ -17,6 +16,4 @@ public interface BoardMapper {
 	public BoardVO read(BoardVO vo);
 	//전체조회
 	public List<BoardVO> getList();
-	
-	
 }
