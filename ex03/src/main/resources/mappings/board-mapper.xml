@@ -34,7 +34,7 @@
 		   ,CONTENT
 		   ,WRITER
 		) VALUES (
-			SEQ_BOARD.NEXTVAL
+			#{bno}
 		   ,#{title}
 		   ,#{content}
 		   ,#{writer}
