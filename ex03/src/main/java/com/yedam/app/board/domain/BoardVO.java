@@ -2,6 +2,8 @@ package com.yedam.app.board.domain;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
 import lombok.Data;
 
 @Data
