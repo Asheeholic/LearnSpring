@@ -1,4 +1,4 @@
-package com.yedam.app.board.controller;
+package com.yedam.app.employee.controller;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,9 +17,11 @@ import lombok.extern.java.Log;
 @Log
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration({"classpath:/spring/*-context.xml",
-					"file:src\\main\\webapp\\WEB-INF\\spring\\appServlet\\servlet-context.xml"})
-public class BoardControllerClient {
+@ContextConfiguration({
+	"classpath:/spring/*-context.xml",
+	"file:src\\main\\webapp\\WEB-INF\\spring\\appServlet\\servlet-context.xml"
+})
+public class EmployeeControllerClient {
 	
 	@Autowired private WebApplicationContext ctx;
 	private MockMvc mockMvc;
@@ -29,26 +31,13 @@ public class BoardControllerClient {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
 	
-	// 전체조회 테스트
 	@Test
 	public void testList() throws Exception {
-		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/list"))
+		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/employee/list"))
 				.andReturn()
 				.getModelAndView()
 				.getModelMap()
-				.toString()
-				);
+				.toString());
 	}
-	
-	// 단건조회 테스트
-	//@Test
-	public void testOne() throws Exception {
-		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/get").param("bno", "2"))
-				.andReturn()
-				.getModelAndView()
-				.getModelMap()
-				.toString()
-				);
-	}
-	
+
 }
