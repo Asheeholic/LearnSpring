@@ -21,11 +21,11 @@
     <script src="${pageContext.request.contextPath}/resources/dist/js/sb-admin-2.js"></script>
 	
    <script>
-    $(document).ready(function() {
+    /* $(document).ready(function() {
         $('#dataTables-example').DataTable({
             responsive: true
         });
-    });
+    }); */
     </script>
 	
 </body>

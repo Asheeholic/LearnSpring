@@ -22,7 +22,7 @@
 	                <div class="panel-body">
 	                    <div class="row">
 	                        <div class="col-lg-6">
-	                            <form role="form" action="modify" method="post">
+	                            <form id="actionForm" role="form" action="modify" method="post">
 	                                <div class="form-group">
 	                                    <label>제목</label>
 	                                    <input class="form-control" name="title" value="${board.title}" placeholder="제목을 적어주세요">
@@ -36,9 +36,12 @@
 	                                    <textarea class="form-control" name="content" rows="3">${board.content}</textarea>
 	                                </div>
 	                                <input type="hidden" name="bno" value="${board.bno}">
-	                                <button type="submit" class="btn btn-primary">Update</button>
+<%-- 	                                <input type="hidden" name="pageNum" value="${cri.pageNum}"> 
+									<input type="hidden" name="amount" value="${cri.amount}">
+ --%>	                                <button type="submit" class="btn btn-primary">Update</button>
 	                                <button type="button" id="delbtn" class="btn btn-danger">Remove</button>
 	                                <button type="reset" class="btn btn-warning">Reset</button>
+	                                <button type="button" class="btn btn-success" onclick="location.href='list?pageNum=${cri.pageNum}&amount=${cri.amount}'">List</button>
 	                            </form>
 	                        </div>
 	                        <!-- /.col-lg-6 (nested) -->
@@ -53,15 +56,16 @@
 	    </div>
 	</div>
 </div>
-<form id="frm" action="delete" method="post">
-	<input id="delbno" type="hidden" name="bno">
-</form>
 <script>
 	$(document).ready(function() {
+		
+		const actionForm = $('#actionForm');
+		
 		$('#delbtn').on('click', function() {
 			if(confirm("정말로 삭제 하시겠습니까?")){
 				$('#delbno').val('${board.bno}');
-				$('#frm').submit();
+				
+				actionForm.submit();
 			}
 		});
 		

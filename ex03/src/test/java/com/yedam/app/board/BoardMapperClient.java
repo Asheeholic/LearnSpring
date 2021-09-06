@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.yedam.app.board.domain.BoardVO;
+import com.yedam.app.board.domain.Criteria;
 import com.yedam.app.board.mapper.BoardMapper;
 import com.yedam.app.board.service.BoardService;
 
@@ -24,7 +25,10 @@ public class BoardMapperClient {
 	
 	@Test
 	public void getList() {
-		log.info(boardMapper.getList().toString());
+		Criteria cri = new Criteria(1, 20);
+		cri.setType("C");
+		cri.setKeyword("검색");
+		log.info(boardMapper.getList(cri).toString());
 	}
 	
 	// 한건조회 테스트
