@@ -299,7 +299,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="/app/board/list"><i class="fa fa-table fa-fw"></i> 게시판</a>
+                            <a href="${pageContext.request.contextPath}/board/list"><i class="fa fa-table fa-fw"></i> 게시판</a>
                         </li>
                         <li>
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>

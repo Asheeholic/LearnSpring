@@ -51,107 +51,25 @@
 	                <!-- /.panel-body -->
 	            </div>
 	            <!-- /.panel -->
-	            <!-- 댓글 등록 시작 -->
-	            <div class="col-12-lg">      
-		            <div class="panel panel-default">
-		            	<div class="panel-heading">
-		            		<i class="fa fa-comments fa-fw"></i>댓글 등록
-		                </div>
-		                <div class="panel-body">
-							<form id="replyForm">
-								<input type="hidden" name="bno" value="${board.bno }">
-								<input name="replyer" value="user10">
-								<input name="reply">
-								<button type="button" id="saveReply">댓글등록</button>
-							</form>
-		                </div>
-		            </div>
-		        </div>
-		        <!-- 댓글 등록 끝 -->
-	            <!-- 댓글 시작 -->
-	            <div class="col-12-lg">      
-		            <div class="panel panel-default">
-		            	<div class="panel-heading">
-		            		<i class="fa fa-comments fa-fw"></i>댓글
-		                </div>
-		                <div class="panel-body">
-		                	<ul class="chat">
-		                		
-		                	</ul>
-		                </div>
-		            </div>
-		        </div>
-		        <!-- 댓글 끝 -->
 	        </div>
 	        <!-- /.col-lg-12 -->
 	    </div>
 	</div>
 </div>
 <script>
-	let bno = "${board.bno}";
-	$(function() {
-		
-		function makeLi(data) {
-			return '<li class="left clearfix">'
-			+		'<div class="header">'
-			+			'<strong class="primary-font">' + data.replyer + '</strong>'
-			+			'<small class="pull-right text-muted">' + data.replyDate + '</small>'
-			+			'<p>' + data.reply + '</p>'
-			+		'</div>'
-			+	'</li>';
-		}		
-		
-		// 삭제처리
-		
-		// 수정처리
-		
-		// 등록처리
-		$("#saveReply").on('click', function(e) {
-			e.preventDefault();
-			$.ajax({
-				url: "../reply/",
-				method: "post",
-				data: $("#replyForm").serialize(),
-				dataType: "json",
-				success: function(data){
-					console.log(data);
-        			$(".chat").append( makeLi(data) );
-				},
-				error: function(){}
-			})
-		})
-		
-		// 목록처리
-		$.ajax({
-			
-			url: "../reply/${board.bno}/1",
-			dataType: "json",
-			success: function(datas){
-				//console.log(datas)
-				let str = "";
-				for(i=0; i<datas.length; i++) {
-					str = makeLi(datas[i]);
-				}
-				$(".chat").html(str)
-			},
-			error: (e) => console.log(e)
-		})
-	})
-	
-</script>
-<script>
 	$(document).ready(function() {
 		
 		const actionForm = $('#actionForm');
 		
-		/* $('#delbtn').on('click', function() {
+		$('#delbtn').on('click', function() {
 			if(confirm("정말로 삭제 하시겠습니까?")){
 				$('#delbno').val('${board.bno}');
 				
 				actionForm.submit();
 			}
-		}); */
+		});
+		
 	});
+	
 </script>
-
 <%@ include file="/WEB-INF/views/includes/footer.jsp" %>
