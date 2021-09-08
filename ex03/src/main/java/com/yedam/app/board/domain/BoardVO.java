@@ -23,4 +23,6 @@ public class BoardVO {
 	@JsonIgnore
 	private Date updatedate;	// 수정일자
 	
+	private int replyCnt;
+	
 }

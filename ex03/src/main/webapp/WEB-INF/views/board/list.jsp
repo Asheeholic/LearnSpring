@@ -23,7 +23,7 @@
 				<c:forEach var="board" items="${list }">
 					<tr>
 						<td>${board.bno }</td>
-						<td><a class="move" href="${board.bno}">${board.title }</a></td>
+						<td><a class="move" href="${board.bno}">${board.title } [${board.replyCnt }]</a></td>
 						<td>${board.content }</td>
 						<td>${board.writer }</td>
 						<td><fmt:formatDate value="${board.regdate}" type="both"/></td>

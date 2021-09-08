@@ -26,6 +26,17 @@ public class ReplyMapperTests {
 	private Long[] bnoArr = {7077912L, 7077911L, 7077910L, 7077909L, 7077908L};
 	
 	@Test
+	public void testList2() {
+		
+		Criteria cri = new Criteria(1, 10);
+		
+		//7077912L
+		List<ReplyVO> replies = mapper.getListWithPaging(cri, 7077912L);
+		
+		replies.forEach(reply -> log.info(reply.toString()));
+	}
+	
+	//@Test
 	public void testList() {
 		
 		Criteria cri = new Criteria();

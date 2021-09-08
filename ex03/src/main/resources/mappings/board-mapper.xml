@@ -33,7 +33,7 @@
 		
 			SELECT * 
 			FROM ( 
-		        SELECT /*+INDEX_DESC(TBL_BOARD TBL_BOARD_PK) */ ROWNUM RN, BNO, TITLE, CONTENT, WRITER, regdate, updatedate
+		        SELECT /*+INDEX_DESC(TBL_BOARD TBL_BOARD_PK) */ ROWNUM RN, BNO, TITLE, CONTENT, WRITER, regdate, updatedate, replycnt
 		        FROM   TBL_BOARD
 		        where
 		        	<include refid="criteria"></include>
@@ -50,6 +50,7 @@
 			   ,WRITER
 			   ,REGDATE
 			   ,UPDATEDATE
+			   ,replycnt
 		  FROM TBL_BOARD
 		  WHERE BNO = #{bno}
 	</select>
@@ -84,5 +85,13 @@
 		WRITER = #{writer},
 		UPDATEDATE = SYSDATE
 		WHERE BNO = #{bno}
+	</update>
+	
+	<update id="updateReplyCnt" >
+		UPDATE TBL_BOARD 
+		SET
+		REPLYCNT = REPLYCNT + #{amount}
+		WHERE
+		BNO = #{bno}	
 	</update>
 </mapper>

@@ -5,6 +5,7 @@
 
 <%@ include file="/WEB-INF/views/includes/header.jsp" %>
 
+${board }
 <div class="row">
 	<div class="col-lg-12">
 		<div class="row">
@@ -79,6 +80,8 @@
 		                		
 		                	</ul>
 		                </div>
+		                <div class="panel-footer">
+		                </div>
 		            </div>
 		        </div>
 		        <!-- 댓글 끝 -->
@@ -88,9 +91,10 @@
 	</div>
 </div>
 <script>
-	let bno = "${board.bno}";
+	
 	$(function() {
-		
+		let bno = "${board.bno}";
+		let replyUL = $('.chat');	
 		function makeLi(data) {
 			return '<li class="left clearfix">'
 			+		'<div class="header">'
@@ -115,27 +119,89 @@
 				dataType: "json",
 				success: function(data){
 					console.log(data);
-        			$(".chat").append( makeLi(data) );
+        			showList(1);
 				},
 				error: function(){}
 			})
 		})
 		
+		
 		// 목록처리
-		$.ajax({
+		let pageNum = 1;
+		let replyPageFooter = $(".panel-footer");
+		
+		function showReplyPage(replyCnt) {
+			let endNum = Math.ceil(pageNum / 10.0) * 10;
+			let startNum = endNum - 9;
 			
-			url: "../reply/${board.bno}/1",
-			dataType: "json",
-			success: function(datas){
-				//console.log(datas)
-				let str = "";
-				for(i=0; i<datas.length; i++) {
-					str = makeLi(datas[i]);
-				}
-				$(".chat").html(str)
-			},
-			error: (e) => console.log(e)
+			let prev = startNum != 1;
+			let next = false;
+			
+			if((endNum * 10) >= replyCnt) {
+				endNum = Math.ceil(replyCnt/10.0);
+			}
+			
+			if((endNum * 10) < replyCnt) {
+				next = true;
+			}
+			
+			let str = "<ul class='pagination pull-right'>";
+			
+			if(prev) {
+				str += "<li class='page-itme'><a class='page-link' href='" + (stratNum -1 ) + "'>Previous</a></li>";
+			}
+			
+			for(let i = startNum; i <= endNum; i++) {
+				let active = pageNum == i ? "active" : "";
+				
+				str += "<li class='page-itme'" + active + "><a class='page-link' href='" + i + "'>" + i + "</a></li>";
+			}
+			
+			if(prev) {
+				str += "<li class='page-itme'><a class='page-link' href='" + (endNum +1 ) + "'>Next</a></li>";
+			}
+			
+			str += "</ul></div>";
+			
+			console.log(str);
+			
+			replyPageFooter.html(str);
+		}
+		
+		function showList(pageNum) {
+			$(".chat").empty();
+			$.ajax({
+				
+				url: "../reply/${board.bno}/" + pageNum,
+				dataType: "json",
+				success: function(datas){
+					console.log(datas)
+					let str = "";
+					for(i=0; i<datas.length; i++) {
+						str += makeLi(datas[i]);
+					}
+					$(".chat").html(str);
+					showReplyPage(${board.replyCnt});
+				},
+				error: (e) => console.log(e)
+			})
+		}
+		
+		showList(1);
+		
+		replyPageFooter.on('click',"li a", function(e) {
+			e.preventDefault();
+			console.log("page click");
+			
+			let targetPageNum = $(this).attr("href");
+			
+			console.log("targetPageNum : " + targetPageNum);
+			
+			pageNum = targetPageNum;
+			
+			showList(pageNum);
 		})
+		
 	})
 	
 </script>
