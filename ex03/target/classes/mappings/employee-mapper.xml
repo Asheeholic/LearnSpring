@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.app.employee.mapper.EmployeeMapper">
+	<select id="getList" resultType="EmployeeVO">
+		SELECT 	EMPLOYEE_ID,
+				FIRST_NAME,
+				LAST_NAME,
+				EMAIL,
+				PHONE_NUMBER,
+				HIRE_DATE,
+				JOB_ID,
+				SALARY,
+				COMMISSION_PCT,
+				MANAGER_ID,
+				DEPARTMENT_ID
+		FROM 	EMPLOYEES
+		ORDER BY 	EMPLOYEE_ID
+	</select>
+	
+	<select id="read" parameterType="EmployeeVO" resultType="EmployeeVO">
+		SELECT 	EMPLOYEE_ID,
+				FIRST_NAME,
+				LAST_NAME,
+				EMAIL,
+				PHONE_NUMBER,
+				HIRE_DATE,
+				JOB_ID,
+				SALARY,
+				COMMISSION_PCT,
+				MANAGER_ID,
+				DEPARTMENT_ID
+		FROM 	EMPLOYEES
+		WHERE 	EMPLOYEE_ID = #{employeeId}
+	</select>
+	
+	<insert id="create" parameterType="EmployeeVO">
+		<selectKey keyProperty="employeeId" resultType="string" order="BEFORE">
+			SELECT EMPLOYEES_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO EMPLOYEES(
+			EMPLOYEE_ID,
+			FIRST_NAME,
+			LAST_NAME,
+			EMAIL,
+			PHONE_NUMBER,
+			HIRE_DATE,
+			JOB_ID,
+			SALARY,
+			COMMISSION_PCT,
+			MANAGER_ID,
+			DEPARTMENT_ID
+		) VALUES (
+			#{employeeId},
+			#{firstName},
+			#{lastName},
+			#{email},
+			#{phoneNumber},
+			SYSDATE,
+			#{jobId},
+			#{salary},
+			#{commissionPct},
+			#{managerId},
+			#{departmentId}
+		)
+	</insert>
+</mapper>

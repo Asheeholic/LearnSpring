@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.app.department.mapper.DepartmentMapper">
+	
+	<select id="getList" resultType="DepartmentVO">
+		SELECT DEPARTMENT_ID,
+			DEPARTMENT_NAME,
+			MANAGER_ID,
+			LOCATION_ID
+		FROM DEPARTMENTS
+	</select>
+	
+	<insert id="create">
+		<selectKey keyProperty="departmentId" order="BEFORE" resultType="string">
+			SELECT DEPARTMENTS_SEQ.NEXTVAL FROM DUAL		
+		</selectKey>
+		INSERT INTO DEPARTMENTS(
+			DEPARTMENT_ID
+			DEPARTMENT_NAME
+			MANAGER_ID
+			LOCATION_ID
+		) VALUES (
+			#{departmentId}
+			#{departmentName}
+			#{managerId}
+			#{locationId}	
+		)
+	</insert>
+	
+</mapper>
